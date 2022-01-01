@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(233, 215, 207);
+}
+
+main {
+    background-color: coral;
+    display: block;
+    margin: -110px 300px;
+    border: 5px solid black;
+}
+
+footer {
+    margin-top: 150px;
+}
+
+h1 {
+    color: rgb(83, 75, 75);
+    margin-top: 125px;
+}
+
+#todays-challenge {
+    color: rgb(170, 96, 83);
+    font-weight: bold;
+    font-size: 52px;
+}
+
+#today-1 {
+    color: rgb(167, 1, 78);
+}
+
+p {
+    color: rgb(83, 75, 75);
+}
+
+a {
+    color: rgb(167, 1, 78);
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 5px solid black;
+}
