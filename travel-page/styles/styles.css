@@ -4,7 +4,7 @@ a {
 }
 
 #hero {
-    height: 800px;
+    height: 825px;
     background-image: url("/travel-page/images/places/ocean.jpeg");
     background-position: center;
     background-size: cover;
@@ -97,4 +97,25 @@ a {
     box-shadow: 2px 4px 8px #444343;
     border-radius: 10px;
     object-fit: cover;
+}
+
+footer {
+    background: linear-gradient(70deg, #181818, #191d1d);
+    padding: 36px 0;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+}
+
+footer li {
+    width: 80px;
+    height: 80px;
+    margin: 0 50px;
+}
+
+footer img {
+    width: 100%;
+    height: 100%;
 }
