@@ -5,7 +5,7 @@ a {
 
 #hero {
     height: 800px;
-    background-image: url("/travel-page/images/ocean.jpeg");
+    background-image: url("/travel-page/images/places/ocean.jpeg");
     background-position: center;
     background-size: cover;
 }

@@ -8,6 +8,11 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 60px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
 }
 
 header ul {
@@ -16,6 +21,20 @@ header ul {
 
 header li {
     margin-left: 20px;
+}
+
+header a {
+    color: #fffb00;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 12px;
+    text-shadow: 1px 1px 2px #000000;
+    border-radius: 6px;
+}
+
+header a:hover {
+    color: #4d4d4d;
+    background-color: #fffb00;
 }
 
 ul {
