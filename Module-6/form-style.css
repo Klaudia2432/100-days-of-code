@@ -1,0 +1,116 @@
+body {
+    background-color: rgb(237,249,254);
+    font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin: 2rem;
+}
+
+form {
+    background-color: rgb(245,248,255);
+    /*border: 5px solid rgb(222,230,236);*/
+    width: 30rem;
+    margin: 3rem auto;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    font: inherit;
+    border: 1px solid rgb(152, 159, 184);
+    border-radius: 4px;
+    padding: 0.25rem;
+    color: rgb(61,58,58);
+}
+
+label {
+    display: block;
+    color: rgb(34, 43, 61);
+    font-weight: bold;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus {
+    background-color: rgb(217, 227, 247);
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: block;
+}
+
+.verify-contact-terms li {
+    display: flex;
+}
+
+.form-control {
+    display: flex;
+    margin: 0.5rem;
+}
+
+.form-control input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+#call,
+#email,
+#no-reply,
+#terms {
+    width: auto;
+    margin-right: 1rem;
+}
+
+#form-control {
+    display: flex;
+}
+
+.btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    border: 1px solid rgb(51, 67, 100);
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: .2rem;
+}
+
+.btn-empty {
+    background-color: transparent;
+    color: rgb(51, 67, 100);
+}
+
+.btn-empty:hover {
+    background-color: rgb(208, 215, 230);
+}
+
+.btn-filled {
+    background-color: rgb(51, 67, 100);
+    color: white;
+}
+
+.btn-filled:hover {
+    background-color: rgb(69, 89, 129);
+    border-color: rgb(69, 89, 129);
+}
