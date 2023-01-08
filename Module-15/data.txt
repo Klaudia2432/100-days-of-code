@@ -1,0 +1,1 @@
+This works fine - data text from file!
