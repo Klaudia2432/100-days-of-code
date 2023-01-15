@@ -12,6 +12,7 @@ const storageConfig = multer.diskStorage({
 });
 
 const upload = multer({storage: storageConfig});
+
 const router = express.Router();
 
 router.get('/', async function(req, res) {
