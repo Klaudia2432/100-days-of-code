@@ -9,11 +9,30 @@ router.get('/', function (req, res) {
 });
 
 router.get('/signup', function (req, res) {
-  res.render('signup');
+  let sessionInputData = req.session.inputData;
+  if(!sessionInputData) {
+    sessionInputData = {
+      hasError: false,
+      email: '',
+      confirmEmail: '',
+      password: ''
+    }
+  }
+  req.session.inputData = null;
+  res.render('signup', {inputData: sessionInputData});
 });
 
 router.get('/login', function (req, res) {
-  res.render('login');
+  let sessionInputData = req.session.inputData;
+  if(!sessionInputData) {
+    sessionInputData = {
+      hasError: false,
+      email: '',
+      password: ''
+    }
+  }
+  req.session.inputData = null;
+  res.render('login', {inputData: sessionInputData});
 });
 
 router.post('/signup', async function (req, res) {
@@ -25,14 +44,33 @@ router.post('/signup', async function (req, res) {
   if (!enteredEmail || !enteredConfirmEmail || !enteredPassword
       || enteredPassword.trim() < 6 || enteredEmail !== enteredConfirmEmail
       || !enteredEmail.includes('@')) {
-      return res.redirect('/signup');
-  }
 
-  if(existingUser) {
-    return res.redirect('/signup');
+      req.session.inputData = {
+        hasError: true,
+        message: 'Invalid input, please check your data!',
+        email: enteredEmail,
+        confirmEmail: enteredConfirmEmail,
+        password: enteredPassword
+      }
+
+      req.session.save(function() {
+        res.redirect('/signup');
+      });
+      return;
   }
 
   const existingUser = await db.getDb().collection('users').findOne({email: enteredEmail});
+
+  if(existingUser) {
+    req.session.inputData = {
+      hasError: true,
+      message: 'User already exists!',
+      email: enteredEmail,
+      confirmEmail: enteredConfirmEmail,
+      password: enteredPassword
+    };
+    return res.redirect('/signup');
+  }
 
   const hashedPassword = await bcrypt.hash(enteredPassword, 12);
 
@@ -54,23 +92,64 @@ router.post('/login', async function (req, res) {
   const existingUser = await db.getDb().collection('users').findOne({email: enteredEmail});
 
   if(!existingUser) {
-    return res.redirect('/login');
+    req.session.inputData = {
+      hasError: true,
+      message: 'Could not login - please check your credentials!',
+      email: enteredEmail,
+      password: enteredPassword
+    };
+    req.session.save(function() {
+      res.redirect('/login');
+    });
+    return;
   }
 
   const passwordsAreEqual = await bcrypt.compare(enteredPassword, existingUser.password);
 
   if(!passwordsAreEqual) {
-    return res.redirect('/login');
+    req.session.inputData = {
+      hasError: true,
+      message: 'Invalid input - please check your details!',
+      email: enteredEmail,
+      password: enteredPassword
+    };
+    req.session.save(function() {
+      res.redirect('/login');
+    });
+    return;
+  }
+  req.session.user = {
+    id: existingUser._id,
+    email: existingUser.email,
+    // isAdmin: existingUser.isAdmin
+  };
+  req.session.isAuthenticated = true;
+  req.session.save(function(){
+    res.redirect('/profile');
+  });
+});
+router.get('/admin', async function (req, res) {
+  if(!res.locals.isAuth) {
+    return res.status(401).render('401');
   }
 
-  console.log('User is authenticated!');
-  res.redirect('/admin');
-});
-
-router.get('/admin', function (req, res) {
+  if(!res.locals.isAdmin) {
+    return res.status(403).render('403');
+  }
   res.render('admin');
 });
 
-router.post('/logout', function (req, res) {});
+router.get('/profile', function (req, res) {
+  if(!req.locals.isAuth) {
+    return res.status(401).render('401');
+  }
+  res.render('profile');
+});
+
+router.post('/logout', function (req, res) {
+  req.session.user = null;
+  req.session.isAuthenticated = false;
+  res.redirect('/');
+});
 
 module.exports = router;
