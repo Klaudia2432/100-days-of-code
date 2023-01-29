@@ -1,0 +1,49 @@
+<%- include("../../shared/includes/head", { pageTitle: "Signup"})%>
+    <link rel="stylesheet" href="/styles/forms.css">
+    <link rel="stylesheet" href="/styles/auth.css">
+</head>
+    <body>
+        <%- include("../../shared/includes/header") %>
+        <main>
+            <h1>Create new account</h1>
+            <form action="/signup" method="POST">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                <p>
+                    <label for="customer-email">Email</label>
+                    <input type="email" name="customer-email" id="customer-email" required>
+                </p>
+                <p>
+                    <label for="customer-confirm-email">Confirm Email</label>
+                    <input type="email" name="customer-confirm-email" id="customer-confirm-email" required>
+                </p>
+                <p>
+                    <label for="customer-password">Password</label>
+                    <input type="password" name="customer-password" id="customer-password" required>
+                </p>
+                <hr>
+                <p>
+                    <label for="customer-fullname">Full Name</label>
+                    <input type="text" name="customer-fullname" id="customer-fullname" required>
+                </p>
+                <p>
+                    <label for="customer-street">Street</label>
+                    <input type="text" name="customer-street" id="customer-street" required>
+                </p>
+                <p>
+                    <label for="customer-postcode">Postcode</label>
+                    <input type="text"
+                           name="customer-postcode"
+                           id="customer-postcode"
+                           minlength="5"
+                           maxlength="5"
+                           required>
+                </p>
+                <p>
+                    <label for="customer-city">City</label>
+                    <input type="text" name="customer-city" id="customer-city" required>
+                </p>
+                <button class="btn">Create Account</button>
+                <p id="switch-form"><a href="/login">Login instead</a></p>
+            </form>
+        </main>
+    <%- include("../../shared/includes/footer") %>

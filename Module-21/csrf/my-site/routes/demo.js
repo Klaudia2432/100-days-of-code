@@ -164,7 +164,7 @@ router.post('/transaction', async function(req, res) {
   }
 
   const transaction = {
-    sender: res.locals.user.email, // parsed from session in app.js
+    sender: res.locals.user.email, // parsed from session in index.js
     recipient: req.body.recipient,
     amount: +req.body.amount // "+" to convert to number
   }
