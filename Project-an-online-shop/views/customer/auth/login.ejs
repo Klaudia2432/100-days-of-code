@@ -1,4 +1,4 @@
-<%- include("../../shared/includes/head", { pageTitle: "Signup"})%>
+<%- include("../../shared/includes/head", { pageTitle: "Login"})%>
 <link rel="stylesheet" href="/styles/forms.css">
 <link rel="stylesheet" href="/styles/auth.css">
 </head>
@@ -6,15 +6,15 @@
 <%- include("../../shared/includes/header") %>
 <main>
     <h1>Login</h1>
-    <form action="/signup" method="POST">
+    <form action="/login" method="POST">
         <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
         <p>
             <label for="customer-email">Email</label>
-            <input type="email" name="customer-email" id="customer-email" required>
+            <input type="email" name="email" id="email" required>
         </p>
         <p>
             <label for="customer-password">Password</label>
-            <input type="password" name="customer-password" id="customer-password" required>
+            <input type="password" name="password" id="password" required>
         </p>
         <button class="btn">Login</button>
         <p id="switch-form"><a href="/signup">No account? No problem! Create an account here!</a></p>
