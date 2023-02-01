@@ -3,20 +3,19 @@ function isEmpty(value) {
 }
 
 function userCredentialsAreValid(email, password) {
-    return email &&
-        email.includes('@') &&
-        password &&
-        password.trim() > 5
+    return (
+        email && email.includes('@') && password && password.trim().length >= 6
+    );
 }
 
-function userDetailsAreValid (email, password, name, street, postcode, city) {
-        return (
-            userCredentialsAreValid(email, password) &&
-            !isEmpty(name) &&
-            !isEmpty(street) &&
-            !isEmpty(postcode) &&
-            !isEmpty(city)
-        );
+function userDetailsAreValid(email, password, name, street, postal, city) {
+    return (
+        userCredentialsAreValid(email, password) &&
+        !isEmpty(name) &&
+        !isEmpty(street) &&
+        !isEmpty(postal) &&
+        !isEmpty(city)
+    );
 }
 
 function emailIsConfirmed(email, confirmEmail) {
@@ -25,5 +24,5 @@ function emailIsConfirmed(email, confirmEmail) {
 
 module.exports = {
     userDetailsAreValid: userDetailsAreValid,
-    emailIsConfirmed: emailIsConfirmed
+    emailIsConfirmed: emailIsConfirmed,
 };
