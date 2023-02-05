@@ -4,6 +4,7 @@ const csrf = require("csurf");
 const expressSession = require("express-session");
 const createSessionConfig = require("./config/session");
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
+const protectedRoutesMiddleware = require('./middlewares/protect-routes');
 
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require('./routes/products.routes');
@@ -29,7 +30,9 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
+app.use(protectedRoutesMiddleware);
 app.use('/admin', adminRoutes);
+
 app.use(errorHandler);
 
 db.connectToDatabase()
