@@ -17,7 +17,8 @@ const db = require("./data/database");
 const addCSRFToken = require("./middlewares/csrf-token");
 const errorHandler = require("./middlewares/error-handler");
 const sessionConfig = createSessionConfig();
-const cartRoutes = require('./routes/cart.routes')
+const cartRoutes = require('./routes/cart.routes');
+const orderRoutes = require('./routes/orders.routes');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -37,6 +38,7 @@ app.use(authRoutes);
 app.use(productRoutes);
 app.use('/cart', cartRoutes);
 app.use(protectedRoutesMiddleware);
+app.use('/orders', orderRoutes);
 app.use('/admin', adminRoutes);
 
 app.use(errorHandler);

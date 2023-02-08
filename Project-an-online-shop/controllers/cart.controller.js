@@ -20,15 +20,19 @@ async function addCartItem(req, res, next) {
 
     res.status(201).json({
         message: 'Cart updated!',
-        newTotalItems: cart.totalQuantity
+        newTotalItems: cart.totalQuantity,
     });
 }
 
-function updateCartItem (req, res) {
+function updateCartItem(req, res) {
     const cart = res.locals.cart;
-    const updatedItemData = cart.updateItem(req.body.productId, req.body.quantity);
 
-    res.session.cart = cart;
+    const updatedItemData = cart.updateItem(
+        req.body.productId,
+        req.body.quantity
+    );
+
+    req.session.cart = cart;
 
     res.json({
         message: 'Item updated!',
@@ -36,12 +40,12 @@ function updateCartItem (req, res) {
             newTotalQuantity: cart.totalQuantity,
             newTotalPrice: cart.totalPrice,
             updatedItemPrice: updatedItemData.updatedItemPrice,
-        }
+        },
     });
 }
 
 module.exports = {
     addCartItem: addCartItem,
     getCart: getCart,
-    updateCartItem: updateCartItem
+    updateCartItem: updateCartItem,
 };
