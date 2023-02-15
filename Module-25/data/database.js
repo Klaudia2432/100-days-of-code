@@ -26,3 +26,8 @@ module.exports = {
   initDb: initDb,
   getDb: getDb
 };
+
+module.exports = {
+  initDb: initDb,
+  getDb: getDb
+};
